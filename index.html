@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+    <link rel="icon" href="images/download.png">
+</head>
+<body>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h1>Tic Tac Toe</h1>
+            <div class="btn-container">
+                <button class="play-btn" type="button">
+                    Play Game
+                </button>
+                <div class="d-none" id="names">
+                    <input autocomplete="off" autofocus type="text" id="name1" placeholder="First Player name">
+                    <div>
+                        <small class="name1" style="color: #fff;"></small>
+                    </div>
+                    <input autocomplete="off" type="text" id="name2" placeholder="Second Player name">
+                    <div>
+                        <small class="name2" style="color: #fff;"></small>
+                    </div>
+                </div>
+                <button type="button">
+                    <a style="text-decoration: none; color: #fff; cursor: pointer; color: rgb(0, 128, 107);" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F185632815867662152%2F&psig=AOvVaw37sDuoWkm8pSvFw9M7uUWH&ust=1637085474132000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLCY2-n4mvQCFQAAAAAdAAAAABAD" target="_blank">Tutorial</a>
+                </button>
+            </div>
+            <article class="about">
+                <p>Tic-tac-toe (American English), noughts and crosses (Commonwealth English), or Xs and Os (Irish English) is a paper-and-pencil game for two players who take turns marking the spaces in a three-by-three grid with X or O. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. It is a solved game, with a forced draw assuming best play from both players.</p>
+            </article>
+            <a class="wiki-link" href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="_blank">See on Wikipedia</a>
+        </div>
+    </div>
+
+    <div id="game">
+        <button class="return-btn" type="button">
+            Return
+        </button>
+        <div class="players">
+            <div class="player">
+                <h2></h2>
+                <span class="score">0</span>
+            </div>
+            <div class="player">
+                <h2></h2>
+                <span class="score">0</span>
+            </div>
+        </div>
+        <div id="board">
+
+        </div>
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <button class="clear-btn" type="button">
+                Clear Spots
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
