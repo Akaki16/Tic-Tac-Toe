@@ -106,11 +106,6 @@ const Game = (() => {
 
     const _scores = document.querySelectorAll('.score');
     const _players = document.querySelectorAll('.player > h2');
-    const _modalName1 = document.querySelector('.first-player');
-    const _modalName2 = document.querySelector('.second-player');
-    const _modalScore1 = document.querySelector('.first-score');
-    const _modalScore2 = document.querySelector('.second-score');
-    const _modalMessage = document.querySelector('.message');
 
     const [ firstName, secondName ] = _players;
     const [ firstScore, secondScore ] = _scores;
