@@ -183,6 +183,91 @@ input[type="text"] {
     background: rgb(101, 143, 177);
 }
 
+#modal2 {
+    display: none;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.info-modal {
+    transform: translateY(50px);
+    padding: 20px;
+    width: 500px;
+    height: 420px;
+    background: #fff;
+    margin: 0 auto;
+    transition: 0.4s;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.info-modal .modal-header h3 {
+    font-family: sans-serif;
+    font-weight: normal;
+    color: #333;
+    font-size: 30px;
+}
+
+.info-modal .modal-body .items {
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-modal
+.modal-body
+.items
+.item h4 {
+    font-size: 30px;
+    color: #333;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+
+.info-modal
+.modal-body
+.items
+.item span {
+    font-size: 20px;
+    color: #333;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+
+.info-modal
+.modal-body
+.modal-message {
+    transform: translateY(20px);
+    font-size: 25px;
+    color: #333;
+    font-weight: bold;
+}
+
+#trophy {
+    transform: translateY(50px);
+    color: rgb(216, 172, 91);  
+}
+
+.info-modal .modal-footer button {
+    transform: translateY(100px);
+    padding: 10px;
+    font-size: 19px;
+    width: 140px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #fff;
+    background: rgb(101, 143, 177);
+    border-radius: 4px;
+    transition: 0.4s;
+}
+
+.info-modal .modal-footer button:hover {
+    background: rgb(93, 141, 180);
+    opacity: 0.9;
+}
+
 @media (max-width: 636px) {
     .modal-content {
         transform: translateY(-90px);
@@ -219,5 +304,9 @@ input[type="text"] {
 
     .clear-btn {
         transform: translateY(5px);
+    }
+
+    .info-modal {
+        width: 90%;
     }
 }
