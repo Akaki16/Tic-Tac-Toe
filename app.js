@@ -6,6 +6,10 @@ const scores = {
     second: 0
 };
 
+const player = {
+    active: 1
+};
+
 const displayController = (() => {
 
     const _playGameBtn = document.querySelector('.play-btn');
@@ -55,24 +59,13 @@ const displayController = (() => {
         second.innerHTML = `${_name2.value} <i class="fas fa-user-check"></i>`;
     }
 
-    const _clear = () => {
-        first.innerHTML = '';
-        second.innerText = '';
-        // reset scores
-        scores.first = 0;
-        scores.second = 0;
-        firstScore.textContent = scores.first;
-        secondScore.textContent = scores.second;
-        // clear all spots on the board
-        document.querySelectorAll('.box').forEach((box) => {
-            box.innerText = '';
-            box.style.backgroundColor = 'lightgray';
-        });
-    }
-
     const _loadHomepage = (modal) => {
         modal.style.display = 'block';
-        _clear();
+        Game.resetart();
+    }
+
+    const _showGameInfo = (modal) => {
+        modal.style.display = 'block';
     }
 
     return {
@@ -81,6 +74,7 @@ const displayController = (() => {
         loadHomepage: _loadHomepage,
         displayGame: _displayGame,
         displayNameFields: _displayNameFields,
+        showGameInfo: _showGameInfo
     }
 
 })();
@@ -106,19 +100,18 @@ const Game = (() => {
 
     const _scores = document.querySelectorAll('.score');
     const _players = document.querySelectorAll('.player > h2');
+    const _resetBtn = document.querySelector('.reset-btn');
+    const _modalMessage = document.querySelector('.modal-message');
 
     const [ firstName, secondName ] = _players;
     const [ firstScore, secondScore ] = _scores;
 
-    // this state variable determines that to put X on the board if it is 1 and if it is 2 put O on the board 
-    let _active = 1;
-
     const _board = {
         move(target) {
-            if (_active === 1) {
+            if (player.active === 1) {
                 target.target.innerText = 'X';
                 _disableMoving(target);
-                _active = 2;
+                player.active = 2;
                 _checkWinner(
                     document.querySelector('.box-0'),
                     document.querySelector('.box-1'),
@@ -162,7 +155,7 @@ const Game = (() => {
             } else {
                 target.target.innerText = 'O';
                 _disableMoving(target);
-                _active = 1;
+                player.active = 1;
                 _checkWinner(
                     document.querySelector('.box-0'),
                     document.querySelector('.box-1'),
@@ -211,7 +204,7 @@ const Game = (() => {
                 box.style.backgroundColor = 'lightgray';
                 box.disabled = false;
                 // return to old state
-                _active = 1;
+                player.active = 1;
             });
         },
         clearBtn: document.querySelector('.clear-btn')
@@ -236,6 +229,16 @@ const Game = (() => {
             document.querySelectorAll('.box').forEach((box) => {
                 box.disabled = true;
             });
+            if (scores.first === 3) {
+                displayController.showGameInfo(document.getElementById('modal2'));
+                _updateInfoModal(
+                    document.querySelector('.player1'),
+                    document.querySelector('.player2'),
+                    document.querySelector('.score1'),
+                    document.querySelector('.score2')
+                );
+                _modalMessage.textContent = `${firstName.innerText} won the game!`;
+            }
         } else if (box1.innerText === 'O' && box2.innerText === 'O' && box3.innerText === 'O') {
             _setBoxColor(box1, box2, box3, 'rgb(101, 177, 152)');
             scores.second++;
@@ -244,13 +247,69 @@ const Game = (() => {
             document.querySelectorAll('.box').forEach((box) => {
                 box.disabled = true;
             });
+            if (scores.second === 3) {
+                displayController.showGameInfo(document.getElementById('modal2'));
+                _updateInfoModal(
+                    document.querySelector('.player1'),
+                    document.querySelector('.player2'),
+                    document.querySelector('.score1'),
+                    document.querySelector('.score2')
+                );
+                _modalMessage.textContent = `${secondName.innerText} won the game!`;
+            }
         }
+    }
+
+    const _updateInfoModal = (name1, name2, score1, score2) => {
+        name1.textContent = firstName.innerText;
+        name2.textContent = secondName.innerText;
+        score1.textContent = scores.first;
+        score2.textContent = scores.second;
+    }
+
+    const _resetart = () => {
+        firstName.innerHTML = '';
+        secondName.innerText = '';
+        // reset scores
+        scores.first = 0;
+        scores.second = 0;
+        firstScore.textContent = scores.first;
+        secondScore.textContent = scores.second;
+        // clear all spots on the board
+        document.querySelectorAll('.box').forEach((box) => {
+            box.innerText = '';
+            box.style.backgroundColor = 'lightgray';
+            box.disabled = false;
+            // return to old state
+            player.active = 1;
+        });
+    }
+
+    const _reset = () => {
+        firstName.textContent = `${firstName.innerText}`;
+        secondName.textContent = `${secondName.innerText}`;
+        scores.first = 0;
+        scores.second = 0;
+        firstScore.textContent = scores.first;
+        secondScore.textContent = scores.second;
+        // clear all spots on the board
+        document.querySelectorAll('.box').forEach((box) => {
+            box.innerText = '';
+            box.style.backgroundColor = 'lightgray';
+            box.disabled = false;
+            // return to old state
+            player.active = 1;
+        });
+        document.getElementById('modal2').style.display = 'none';
     }
 
     return {
         board: _board,
         firstScore: firstScore,
         secondScore: secondScore,
+        resetBtn: _resetBtn,
+        resetart: _resetart,
+        reset: _reset
     }
 
 })();
@@ -279,4 +338,9 @@ Game.board.clearBtn.addEventListener('click', () => {
 // Go to homepage
 displayController.returnBtn.addEventListener('click', () => {
     displayController.loadHomepage(document.getElementById('modal'));
+});
+
+// reset game
+Game.resetBtn.addEventListener('click', () => {
+    Game.reset();
 });
