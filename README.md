@@ -6,6 +6,8 @@ This Tic Tac Toe game is created with Vanilla JavaScript
 
 Program doesn't involve AI system, instead two players are playing with each other
 
+[live demo](https://akaki16.github.io/Tic-Tac-Toe/)
+
 ### Running documentation
 
 Open terminal in your operating system
